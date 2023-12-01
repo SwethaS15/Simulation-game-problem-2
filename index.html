@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Simulation</title>
+</head>
+<body>
+    GAME SIMULATION
+</body>
+<script>
+    function Vehicle(brand,model,speed,fueltype){
+        this.brand=brand;
+        this.model=model;
+        this.speed=speed;
+        this.fueltype=fueltype;
+    }
+
+    Vehicle.prototype.accelerate=function(){
+        this.speed+=80;
+        console.log("oue vechicle speed is",this.speed)
+    };
+
+    Vehicle.prototype.brake=function(){
+        this.brake-=40;
+    };
+
+    Vehicle.prototype.refule=function(){
+        console.log("Refuelling  th vehicle")
+    };
+
+    // Constructor function to create a car 
+    function Car(brand,model,speed,fueltype,noofwheels)
+    {
+        Vehicle.call(this,brand,model,speed,fueltype)
+        this.brand=brand;
+        this.model=model;
+        this.speed=speed;
+        this.fueltype=fueltype;
+        this.noofwheels=noofwheels;
+    }
+     
+    Object.setPrototypeOf(Car.prototype,Vehicle.prototype);
+
+    function Airplane(brand,model,speed,fueltype,noofEngines,hasLandingGear,noofwheels)
+    {
+       Vehicle.call(this,brand,model,speed,fueltype)
+
+       this.noofEngines=noofEngines;
+       this.hasLandingGear=hasLandingGear;
+       this.noofwheels=noofwheels;
+    }
+
+    Object.setPrototypeOf(Airplane.prototype,Vehicle.prototype);
+
+    Airplane.prototype.takeoff=function(){
+        console.log(this.brand,"is Taking off");
+    }
+    let car1 = new Car("Kia",2021,4,"petrol",4);
+    let air= new Airplane("indigo",2022,5,"petrol",6);
+    car1.accelerate();
+    car1.brake();
+    car1.refule();
+    console.log(car1);
+    console.log(air);
+    air.accelerate();
+    air.takeoff();
+
+
+</script>
+</html>
